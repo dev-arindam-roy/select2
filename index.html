@@ -213,6 +213,7 @@ $(document).ready(function() {
         var _optColor = $(data.element).data('color') ?? '';
         var _optSku = $(data.element).data('sku') ?? ''; 
         var $container = $(`<div class="select2-result-repository clearfix">
+                <div class="select2-result-repository__avatar"><img src="./cubes_32.png" /></div>
                 <div class="select2-result-repository__meta">
                     <div class="select2-result-repository__title">${data.text}</div>
                     <div class="select2-result-repository__description">SKU:${_optSku} | Size:${_optSize} | Color:${_optColor}</div>
