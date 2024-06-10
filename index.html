@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Select2</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css" integrity="sha512-3M00D/rn8n+2ZVXBO9Hib0GKNpkm8MSUU/e2VNthDyBYxKWG+BftNYYcuEjXlyrSO637tidzMBXfE7sQm0INUg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .select2-selection {
+        -webkit-box-shadow: 0;
+        box-shadow: 0;
+        background-color: #fff;
+        border: 0;
+        border-radius: 0;
+        color: #555555;
+        font-size: 14px;
+        outline: 0;
+        min-height: 38px;
+        text-align: left;
+    }
+
+    .select2-selection__rendered {
+        margin: 5px;
+    }
+
+    .select2-selection__arrow {
+        margin: 5px;
+    }
+
+    .text-sm .select2-container--default .select2-selection--single .select2-selection__rendered,
+    select.form-control-sm~.select2-container--default .select2-selection--single .select2-selection__rendered {
+        margin-top: -0.3rem;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    .select2-selection__clear {
+        margin-top: 2px;
+        color: #dc3545;
+    }
+
+    label em,
+    .onex-error,
+    .onex-error-label {
+        color: #dc3545;
+    }
+
+    span.select2-custom-error {
+        border: 1px solid #dc3545;
+        border-radius: 5px;
+    }
+
+    .onex-error {
+        font-size: 14px;
+    }
+
+    .datepicker.datepicker-dropdown.dropdown-menu {
+        left: 8px !important;
+    }
+
+    .select2-add-new-option:active,
+    .select2-add-new-option:hover,
+    .select2-add-new-option:visited,
+    .select2-add-new-option:link {
+        padding: 6px;
+        height: 20px;
+        display: inline-table;
+        padding-left: 10px;
+        background: #38bf00;
+        width: 100%;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .select2-option-modal-title {
+        font-weight: 600;
+        font-size: 20px;
+    }
+    .select2-result-repository__avatar {
+        width: 40px;
+        float: left;
+        text-align: center;
+    }
+
+    .select2-result-repository__meta {
+        float: left;
+        margin-left: 8px;
+    }
+
+    .select2-result-repository__title {
+        margin-top: -4px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .select2-result-repository__description {
+        font-size: 14px;
+        margin-top: -4px;
+    }
+
+    .select2-results__option.loading-results .ph-item {
+        border: none !important;
+        margin-bottom: 0px !important;
+        padding: 0px !important;
+    }
+
+    .select2-results__option.loading-results .ph-item .ph-col-12 {
+        margin-bottom: 0px !important;
+        padding-left: 0px !important;
+    }
+
+    .select2-option-avatar-image {
+        width: 100%;
+        max-height: 60px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+    <div class="row mt-3 mb-3">
+        <div class="col-md-4">
+            <div class="form-group">
+                <select name="select1" id="select1" class="form-control" data-placeholder="Select a product">
+                    <option></option>
+                    <option value="1000" data-size="7" data-color="Black" data-sku="123451">Item-1</option>
+                    <option value="2000" data-size="8" data-color="Brown" data-sku="123452">Item-2</option>
+                    <option value="3000" data-size="8" data-color="Black" data-sku="123453">Item-3</option>
+                    <option value="4000" data-size="6" data-color="White" data-sku="123454">Item-4</option>
+                    <option value="5000" data-size="9" data-color="Golden" data-sku="123455">Item-5</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Customer Modal -->
+<div class="modal fade" id="addNewItemModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title select2-option-modal-title"><i class="fas fa-plus-square text-success"></i> Add New Item</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form name="frm" id="frmx" action="" method="POST">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="itemName" class="onex-form-label">Item Name: <em>*</em></label>
+                                <input type="text" name="item_name" id="itemName" class="form-control" placeholder="Enter Item Name" required="required"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="itemSku" class="onex-form-label">Item No: <em>*</em></label>
+                                <input type="text" name="item_sku" id="itemSku" class="form-control" placeholder="Enter Item No" required="required"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="itemSize" class="onex-form-label">Item Size: <em>*</em></label>
+                                <input type="text" name="item_size" id="itemSize" class="form-control" placeholder="Enter Item Size" required="required"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="itemColor" class="onex-form-label">Item Color: <em>*</em></label>
+                                <input type="text" name="item_color" id="itemColor" class="form-control" placeholder="Enter Item Color" required="required"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" id="addItemBtn" class="btn btn-success mr-auto">Add Item</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+$(document).ready(function() {
+    $('#select1').select2({
+        width: '100%',
+        allowClear: true,
+        //placeholder: 'Select an option',
+        dropdownPosition: 'below',
+        templateResult: format,
+        escapeMarkup: function(m) {
+            return m;
+        }
+    });
+    function format(data) {
+        if (typeof data.id == "undefined" || !data.id) return data.text;
+        var _optSize = $(data.element).data('size') ?? '';
+        var _optColor = $(data.element).data('color') ?? '';
+        var _optSku = $(data.element).data('sku') ?? ''; 
+        var $container = $(`<div class="select2-result-repository clearfix">
+                <div class="select2-result-repository__meta">
+                    <div class="select2-result-repository__title">${data.text}</div>
+                    <div class="select2-result-repository__description">SKU:${_optSku} | Size:${_optSize} | Color:${_optColor}</div>
+                </div>
+            </div>`
+        );
+        
+        return $container;
+    }
+    $('#select1').on('select2:open', () => {
+        $(".select2-results:not(:has(a))").prepend('<a href="javascript:void(0);" class="select2-add-new-option" data-select2id="select1" data-modal-id="addNewItemModal"><i class="fas fa-plus"></i> Add New Item</a>');
+    });
+    $('body').on('click', '.select2-add-new-option', function(e) {
+        e.preventDefault();
+        $('#' + $(this).data('select2id')).select2('close');
+        $('#' + $(this).data('modal-id')).modal({
+            backdrop: 'static', 
+            keyboard: false
+        }, 'show');
+    });
+    $('#addNewItemModal').on('shown.bs.modal', function () {
+        $('div.onex-error').remove();
+    });
+    $("#frmx").validate({
+        errorClass: 'onex-error',
+        errorElement: 'div',
+        ignore: '.ignore',
+        rules: {
+            item_name: {
+                required: true,
+                maxlength: 30
+            },
+            item_sku: {
+                required: true,
+                maxlength: 20
+            },
+            item_color: {
+                required: true,
+                maxlength: 60
+            },
+            item_size: {
+                required: true,
+                digits: true
+            }
+        },
+        messages: {
+            item_name: {
+                required: 'Please enter item name',
+                maxlength: 'Maximum 30 chars accepted'
+            },
+            item_sku: {
+                required: 'Please enter item sku',
+                maxlength: 'Maximum 20 chars accepted'
+            },
+            item_color: {
+                required: 'Please enter item color',
+                maxlength: 'Maximum 60 chars accepted'
+            },
+            item_size: {
+                required: 'Please enter item size',
+                digits: 'Please enter valid mobile number'
+            }
+        }
+    });
+    $('body').on('click', '#addItemBtn', function() {
+        if ($('#frmx').valid()) {
+            let data = {
+                id: Math.random() * 1000,
+                text: document.getElementById('itemName').value
+            };
+            var newOption = new Option(data.text, data.id, false, false);
+            $('#select1').append(newOption).val(data.id).trigger('change');
+            $('#select1').find(':selected')
+                .attr('data-size', document.getElementById('itemSize').value)
+                .attr('data-color', document.getElementById('itemColor').value)
+                .attr('data-sku', document.getElementById('itemSku').value);
+            $('#select1-error').hide();
+            $('#frmx').find('.form-control').val('');
+            $('#addNewItemModal').modal('hide');
+        }
+    });
+});
+</script>
+</body>
+</html>
