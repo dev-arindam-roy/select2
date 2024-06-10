@@ -208,6 +208,8 @@ function createOrderSelect2TempSelection (data) {
 
 [https://select2.org/getting-started/installation](https://select2.org/getting-started/installation)
 
+[https://select2.org/programmatic-control/events](https://select2.org/programmatic-control/events)
+
 [https://select2.org/programmatic-control/add-select-clear-items](https://select2.org/programmatic-control/add-select-clear-items)
 
 [https://select2.org/configuration/data-attributes](https://select2.org/configuration/data-attributes)
