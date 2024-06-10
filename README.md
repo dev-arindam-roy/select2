@@ -103,6 +103,10 @@ $(document).ready(function() {
             $('#addNewItemModal').modal('hide');
         }
     });
+    $('#getValueBtn').on('click', function() {
+        //alert($('#select1').select2('val'));
+        alert($('#select1').val());
+    });
 });
 ```
 
@@ -208,8 +212,12 @@ function createOrderSelect2TempSelection (data) {
 
 [https://select2.org/getting-started/installation](https://select2.org/getting-started/installation)
 
+[https://select2.org/programmatic-control/methods](https://select2.org/programmatic-control/methods)
+
 [https://select2.org/programmatic-control/events](https://select2.org/programmatic-control/events)
 
 [https://select2.org/programmatic-control/add-select-clear-items](https://select2.org/programmatic-control/add-select-clear-items)
 
 [https://select2.org/configuration/data-attributes](https://select2.org/configuration/data-attributes)
+
+[https://select2.org/upgrading/migrating-from-35#renamed-templating-options](https://select2.org/upgrading/migrating-from-35#renamed-templating-options)

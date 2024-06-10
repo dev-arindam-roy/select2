@@ -134,6 +134,9 @@
                 </select>
             </div>
         </div>
+        <div class="col-md-4">
+            <button type="button" id="getValueBtn" class="btn btn-primary">Get Value</button>
+        </div>
     </div>
 </div>
 <!-- Add Customer Modal -->
@@ -290,6 +293,10 @@ $(document).ready(function() {
             $('#frmx').find('.form-control').val('');
             $('#addNewItemModal').modal('hide');
         }
+    });
+    $('#getValueBtn').on('click', function() {
+        //alert($('#select1').select2('val'));
+        alert($('#select1').val());
     });
 });
 </script>
